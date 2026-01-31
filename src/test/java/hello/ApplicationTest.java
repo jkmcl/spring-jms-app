@@ -59,7 +59,7 @@ class ApplicationTest {
 	}
 
 	@Test
-	void testInboundMessage() throws Exception {
+	void testInboundMessage() {
 		log.info("Sending 1 inbound message...");
 		var expected = "Hello world!";
 		messenger.send(properties.getQueue().getInbound(), expected);
@@ -71,7 +71,7 @@ class ApplicationTest {
 	}
 
 	@Test
-	void testMultipleInboundMessages() throws Exception {
+	void testMultipleInboundMessages() {
 		log.info("Sending 8 inbound messages...");
 		messenger.send(properties.getQueue().getInbound(), "msg1");
 		messenger.send(properties.getQueue().getInbound(), "msg2");
