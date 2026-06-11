@@ -9,7 +9,7 @@ public class Reference<V> {
 	}
 
 	public final void set(V newValue) {
-		this.value = newValue;
+		value = newValue;
 	}
 
 }
