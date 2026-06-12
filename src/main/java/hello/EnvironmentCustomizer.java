@@ -1,24 +1,25 @@
-package hello.config;
+package hello;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.context.event.ApplicationContextInitializedEvent;
+import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.util.StringUtils;
 
 /**
- * This class should be registered in META-INF/spring.factories
+ * Demonstrates how to set a system property to the value of an environment
+ * variable.
  */
-public class MyApplicationListener implements ApplicationListener<ApplicationContextInitializedEvent> {
+public class EnvironmentCustomizer implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
 
 	private static final String ENV_NAME = "PATH";
 
 	private static final String PROP_NAME = "os.path";
 
-	private final Logger logger = LoggerFactory.getLogger(MyApplicationListener.class);
+	private final Logger logger = LoggerFactory.getLogger(EnvironmentCustomizer.class);
 
 	@Override
-	public void onApplicationEvent(ApplicationContextInitializedEvent event) {
+	public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {
 		var value = System.getenv(ENV_NAME);
 		if (StringUtils.hasText(value)) {
 			System.setProperty(PROP_NAME, value);
